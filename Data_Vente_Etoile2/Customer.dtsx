@@ -1,0 +1,608 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/1/2023 10:37:07 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="STG-ERP-4"
+  DTS:CreatorName="STG-ERP-4\user"
+  DTS:DTSID="{759F1C3C-372A-420B-B7DC-3ED01B227BD9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5223.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Customer"
+  DTS:PackageType="5"
+  DTS:VersionBuild="9"
+  DTS:VersionGUID="{E635AB7D-169E-4E2E-BF54-1769876336EC}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{B3E13C6C-A38F-4210-8678-0064CE1DD12B}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\user\Desktop\OmniData\Data_vente_etoile\Customers.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[STG-ERP-4.Amazon_sells]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{FAFD72BF-4BE9-44DC-ABC1-1353F31A5592}"
+      DTS:ObjectName="STG-ERP-4.Amazon_sells">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=STG-ERP-4;Initial Catalog=Amazon_sells;Integrated Security=True;Application Name=SSIS-Customer-{FAFD72BF-4BE9-44DC-ABC1-1353F31A5592}STG-ERP-4.Amazon_sells;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[STG-ERP-4.Vente_Retail]"
+      DTS:CreationName="ADO.NET:System.Data.SqlClient.SqlConnection, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+      DTS:DTSID="{ADF9AD4C-285F-48E6-A2AD-E07B45345375}"
+      DTS:ObjectName="STG-ERP-4.Vente_Retail">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=STG-ERP-4;Initial Catalog=Vente_Retail;Integrated Security=True;Application Name=SSIS-Customer-{ADF9AD4C-285F-48E6-A2AD-E07B45345375}STG-ERP-4.Vente_Retail;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Data Flow Task"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{A74E4242-596E-4568-BF89-F574C11CBA03}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Data Flow Task"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Data Flow Task\CustomerInput"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Excel Source"
+              name="CustomerInput"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">Customers$</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mapping from parameters in the SQL command to variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\CustomerInput.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output]"
+                  name="Excel Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Customer]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer]"
+                      name="Customer"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer Number]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Customer Number]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer Number]"
+                      name="Customer Number"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Address]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Address]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Address]"
+                      name="Address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[PostalCode]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Phone]"
+                      name="Phone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Fax]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Fax]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Fax]"
+                      name="Fax"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Line of Business]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Line of Business]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Line of Business]"
+                      name="Line of Business"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Base currency]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Base currency]"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Base currency]"
+                      name="Base currency"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Customer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Customer Number]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer Number" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[City]"
+                      dataType="wstr"
+                      length="255"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[StateProvince]"
+                      dataType="wstr"
+                      length="255"
+                      name="StateProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Country]"
+                      dataType="wstr"
+                      length="255"
+                      name="Country" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Line of Business]"
+                      dataType="wstr"
+                      length="255"
+                      name="Line of Business" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Region]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Region Code]"
+                      dataType="wstr"
+                      length="255"
+                      name="Region Code" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].ExternalColumns[Base currency]"
+                      dataType="wstr"
+                      length="255"
+                      name="Base currency" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output]"
+                  isErrorOut="true"
+                  name="Excel Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Customer]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Customer]"
+                      name="Customer" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Customer Number]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Customer Number]"
+                      name="Customer Number" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Address]"
+                      name="Address" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[PostalCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[PostalCode]"
+                      name="PostalCode" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Phone]"
+                      name="Phone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Fax]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Fax]"
+                      name="Fax" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Line of Business]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Line of Business]"
+                      name="Line of Business" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Base currency]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[Base currency]"
+                      name="Base currency" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\Dim_Customer"
+              componentClassID="Microsoft.ManagedComponentHost"
+              contactInfo="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination.;Microsoft Corporation; Microsoft SQL Server; © Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Loads data into an ADO.NET-compliant database that uses a database table or view. Load data into a new or existing table. For example, use an ADO.NET provider for ODBC to load data into an ODBC destination."
+              name="Dim_Customer"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The Destination database table name."
+                  expressionType="Notify"
+                  name="TableOrViewName"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">"Customer"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows per batch. The default is 0 which uses the same size as SSIS internal buffer. "
+                  expressionType="Notify"
+                  name="BatchSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out. A value of 0 indicates infinite time-out. "
+                  expressionType="Notify"
+                  name="CommandTimeout">30</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether to use the SqlBulkCopy interface to improve the performance of bulk insert operations. Only certain providers support this interface."
+                  expressionType="Notify"
+                  name="UseBulkInsertWhenPossible">true</property>
+                <property
+                  dataType="System.String"
+                  name="UserComponentTypeName">Microsoft.ADONETDestination</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\Dim_Customer.Connections[IDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[STG-ERP-4.Vente_Retail]"
+                  connectionManagerRefId="Package.ConnectionManagers[STG-ERP-4.Vente_Retail]"
+                  description="Managed connection manager"
+                  name="IDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input]"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ADO NET Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Customer]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Customer"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Customer]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Customer Number]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Customer Number"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Customer Number]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Customer Number]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Address"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Address]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Address]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[PostalCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="PostalCode"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[PostalCode]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[PostalCode]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Phone]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Phone"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Phone]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Phone]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Fax]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Fax"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Fax]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Fax]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Line of Business]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Line of Business"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Line of Business]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Line of Business]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].Columns[Base currency]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Base currency"
+                      externalMetadataColumnId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Base currency]"
+                      lineageId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output].Columns[Base currency]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Customer]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Customer Number]"
+                      dataType="wstr"
+                      length="255"
+                      name="Customer Number" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Address]"
+                      dataType="wstr"
+                      length="255"
+                      name="Address" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[PostalCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Phone]"
+                      dataType="wstr"
+                      length="255"
+                      name="Phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Fax]"
+                      dataType="wstr"
+                      length="255"
+                      name="Fax" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Line of Business]"
+                      dataType="wstr"
+                      length="255"
+                      name="Line of Business" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input].ExternalColumns[Base currency]"
+                      dataType="wstr"
+                      length="255"
+                      name="Base currency" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\Dim_Customer.Outputs[ADO NET Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="ADO NET Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Dim_Customer.Outputs[ADO NET Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\Dim_Customer.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\Dim_Customer.Outputs[ADO NET Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Data Flow Task.Paths[Excel Source Output]"
+              endId="Package\Data Flow Task\Dim_Customer.Inputs[ADO NET Destination Input]"
+              name="Excel Source Output"
+              startId="Package\Data Flow Task\CustomerInput.Outputs[Excel Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150.4,41.6"
+          Id="Package\Data Flow Task"
+          TopLeft="315.833316076962,107.466665919357" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146.4,41.6"
+          Id="Package\Data Flow Task\CustomerInput"
+          TopLeft="475.999992907047,110.999998345971" />
+        <NodeLayout
+          Size="148,41.6"
+          Id="Package\Data Flow Task\Dim_Customer"
+          TopLeft="472.166641169125,212.633331892954" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="547.683317038086,152.599998345971">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.033333546983"
+              Start="0,0"
+              End="0,52.533333546983">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.533333546983" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\CustomerInput">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Dim_Customer">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
