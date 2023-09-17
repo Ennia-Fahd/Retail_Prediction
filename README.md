@@ -14,6 +14,7 @@ During this phase we will establish our Data Warehouse using the SSIS ETL tool, 
 ![Customer](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/70483340-a971-4a22-81e1-6f4d067e196f)
 
 2-Dimension Product:
+
 ![Product](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/00314544-d8c8-4f95-aac7-dcdfd7a8f0d4)
 
 3-Dimension Region:
