@@ -37,6 +37,7 @@ We generated the time dimension using a script to create a set of dates between 
 ![factOrder3](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/26bfc521-d6f1-450d-a87e-44a8b7919318)
 
 Visualization with Dashboard
+
 ![datawa_rehouse_Powerbi](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/6d653478-cf78-4b19-8ea1-ba5e30fde93e)
 ![dashboard1](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/39d49e8b-4b07-4eae-a6af-950a38c9aec2)
 ![dashboard2](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/9bbd8e3f-6b25-4115-99c7-1a44f83cab50)
