@@ -1,0 +1,53 @@
+# Import necessary libraries
+import pandas as pd
+import numpy as np
+from statsmodels.tsa.holtwinters import ExponentialSmoothing
+import matplotlib.pyplot as plt
+
+# Assuming you have a dataset loaded into a DataFrame named 'dataset' with columns 'SalesQty', 'Sales', 'UnitPrice', and 'Item Desc'
+# Make sure to replace 'SalesQty', 'Sales', 'UnitPrice', and 'Item Desc' with the actual column names in your dataset
+# dataset = pd.read_csv('path_to_your_dataset.csv')
+
+# Group the dataset by 'Item Desc' and calculate the sum of SalesQty, sum of Sales, and average of UnitPrice for each product
+product_sales = dataset.groupby('Item Desc').agg({
+    'Sales Qty': 'sum',
+    'Sales': 'sum',
+    'AverageTemperature': 'first',
+    'Catalog Price': 'first',
+    'number of Days Late': 'sum',
+    'Unit Price': 'mean',
+    'QualRating': 'first',
+    'Customer Number': 'count'
+})
+
+# Combine sum of SalesQty, sum of Sales, and average of UnitPrice to create a demand indicator
+product_sales['DemandIndicator'] = (
+    product_sales['Sales Qty'] *2 +
+    product_sales['Sales'] * 2 +
+    product_sales['Unit Price'] * 1.5 -
+    product_sales['number of Days Late'] * 3 +
+    product_sales['Catalog Price'] * 2 +
+    product_sales['AverageTemperature'] * 1.5+
+    product_sales['QualRating'] * 3+
+    product_sales['Customer Number'] * 3
+)
+
+# Select the top 10 products with the highest demand indicator
+top_products = product_sales.nlargest(10, 'DemandIndicator')
+
+# Set up a figure for plotting
+plt.figure(figsize=(15, 10))
+
+# Plot the demand indicators as a bar chart for each product
+plt.bar(top_products.index, top_products['DemandIndicator'], color='blue')
+
+# Add labels to the bars
+for item, value in zip(top_products.index, top_products['DemandIndicator']):
+    plt.text(item, value + 5, f'{value:.2f}', ha='center', va='bottom', fontsize=10)
+
+plt.xlabel('Product')
+plt.ylabel('Demand Indicator')
+plt.title('Top 10 Products with Highest Future Total Sales for the year 2018')
+plt.xticks(rotation=90)
+plt.tight_layout()
+plt.show()
