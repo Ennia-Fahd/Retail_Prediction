@@ -24,6 +24,7 @@ During this phase we will establish our Data Warehouse using the SSIS ETL tool, 
 ![Supplier](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/5289aeb9-d8ba-4249-af5e-8dd667ff4344)
 
 5-Dimension Time:
+
 ![Time](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/aaa3f30f-fa54-442d-a81c-990c21294d8f)
 ![script_Temps](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/854fc026-5d0b-4713-b21f-ecfcfa254786)
 
