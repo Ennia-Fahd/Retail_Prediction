@@ -45,7 +45,7 @@ We generated the time dimension using a script to create a set of dates between 
 ![dashboard2](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/9bbd8e3f-6b25-4115-99c7-1a44f83cab50)
 ![dahsboard3](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/b72afece-3dc1-4fc3-b2a3-20abf4d19627)
 
-In this diagram, we have used a Python script to forecast demand by product, and it also shows the validity of this forecast in days. This forecast is carried out using the exponential smoothing algorithm, a detailed explanation of which can be found in the "Prediction_PowerBI" file. Once the code runs, it generates an Excel "product_prediction_BI.xls" file that we can import directly into Power BI and link to our data model.
+In this diagram, we have used a Python script to forecast demand by product as an indicator between 1 and 10, and it also shows the validity of this forecast in days. This forecast is carried out using the exponential smoothing algorithm, a detailed explanation of which can be found in the "Prediction_PowerBI" file. Once the code runs, it generates an Excel "product_prediction_BI.xls" file that we can import directly into Power BI and link to our data model.
 
 ![dashboard4](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/16bb0bed-2996-458f-a011-1ff3368e956c)
 
