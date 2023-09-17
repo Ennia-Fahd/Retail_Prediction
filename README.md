@@ -5,11 +5,13 @@ The objective of this project is to deeply analyze product sales data from a dat
 # Design the star diagram
 
 The first step is to create a star schema to set up a data warehouse that will serve as the primary source of data.
+
 ![model_etoile4](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/9a39497e-2353-42f1-8664-b46765b57a10)
 
 # Implement the Datawarehouse
 
 During this phase we will establish our Data Warehouse using the SSIS ETL tool, which will allow us to simplify the process of cleaning, normalizing and manipulating data, in order to create tables according to our needs specific.
+
 1-Dimension Customer:
 ![Customer](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/70483340-a971-4a22-81e1-6f4d067e196f)
 
@@ -42,6 +44,9 @@ We generated the time dimension using a script to create a set of dates between 
 ![dashboard1](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/39d49e8b-4b07-4eae-a6af-950a38c9aec2)
 ![dashboard2](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/9bbd8e3f-6b25-4115-99c7-1a44f83cab50)
 ![dahsboard3](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/b72afece-3dc1-4fc3-b2a3-20abf4d19627)
+
 In this diagram, we have used a Python script to forecast demand by product, and it also shows the validity of this forecast in days. This forecast is carried out using the exponential smoothing algorithm, a detailed explanation of which can be found in the "Prediction_PowerBI" file. Once the code runs, it generates an Excel "product_prediction_BI.xls" file that we can import directly into Power BI and link to our data model.
+
 ![dashboard4](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/16bb0bed-2996-458f-a011-1ff3368e956c)
+
 This diagram was created using the Python script editor built into Power BI, applying the exponential smoothing algorithm in the same way as in the previous code, following the same logic.This code is in the file "scirpt_shema_dashboard4_powerBI.txt".
