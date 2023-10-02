@@ -1,0 +1,2 @@
+2023-07-09 00:14:31,487 - ERROR - Not handled error: ChromeDriverManager.__init__() got an unexpected keyword argument 'log_level'
+2023-07-09 00:14:48,388 - ERROR - Not handled error: ChromeDriverManager.__init__() got an unexpected keyword argument 'log_level'
