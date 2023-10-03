@@ -10,7 +10,7 @@ The first step is to create a star schema to set up a data warehouse that will s
 
 # Implement the Datawarehouse
 
-During this phase we will establish our Data Warehouse using the SSIS ETL tool, which will allow us to simplify the process of cleaning, normalizing and manipulating data, in order to create tables according to our needs specific.
+<h1>During this phase we will establish our Data Warehouse using the SSIS ETL tool, which will allow us to simplify the process of cleaning, normalizing and manipulating data, in order to create tables according to our needs specific.</h1>
 
 1-Dimension Customer:
 ![Customer](https://github.com/Ennia-Fahd/Retail_Prediction/assets/92646945/70483340-a971-4a22-81e1-6f4d067e196f)
